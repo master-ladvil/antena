@@ -6,6 +6,8 @@ const cors = require('cors')
 require("dotenv/config")
 
 
+
+
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended : true}))
 app.use(cors())
@@ -32,6 +34,5 @@ app.set('port', process.env.PORT || 4200)
 
 
 
- app.listen(app.get('port'), () => console.log('listening on port ' + app.get('port')))
-
+app.listen(app.get('port'), () => console.log('listening on port ' + app.get('port')))
 

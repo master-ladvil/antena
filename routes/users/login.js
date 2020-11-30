@@ -28,10 +28,12 @@ router.post('/signup', async (req,res) => {
 
 
 router.post('/login', async (req,res) => {
-    
+
+        try{
         const intercourser = await studmod.findOne({regNo : req.body.regNo})
+        
         if(!intercourser){
-            return res.json({message : "check regno/pwd"})
+            return res.json({status : "check regno/pwd"})
         }
         console.log(intercourser.pwd)
         console.log(req.body.pwd)
@@ -47,6 +49,7 @@ router.post('/login', async (req,res) => {
 
         const token = jwt.sign({_id : intercourser._id}, process.env.SECRET_TOKEN_STUD)
         res.header("auth-token", token).json(response)
+    }catch(err){res.json({message : err})}
         
 })
 
