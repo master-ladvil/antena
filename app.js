@@ -6,8 +6,6 @@ const cors = require('cors')
 require("dotenv/config")
 
 
-port = 4200
-
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended : true}))
 app.use(cors())
@@ -30,8 +28,10 @@ url ="mongodb+srv://admin:admin@api-shop.edmom.mongodb.net/antenna?retryWrites=t
 mongoose.connect(url,{useNewUrlParser: true, useUnifiedTopology : true},()=> {console.log("connected to db")}
 )
 
-app.listen(port, () => {
-    console.log(`listening on ${port}`)
-})
+app.set('port', process.env.PORT || 4200)
+
+
+
+ app.listen(app.get('port'), () => console.log('listening on port ' + app.get('port')))
 
 
