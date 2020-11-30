@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const studmod = require("../../models/students/studentlogin")
 const jwt = require("jsonwebtoken")
+const sECRET_TOKEN_STUD = "billie"
 
 
 router.get('/', async(req,res) => {
@@ -47,7 +48,7 @@ router.post('/login', async (req,res) => {
             status : "login succe5fu!!"
         }
 
-        const token = jwt.sign({_id : intercourser._id}, process.env.SECRET_TOKEN_STUD)
+        const token = jwt.sign({_id : intercourser._id}, sECRET_TOKEN_STUD)
         res.header("auth-token", token).json(response)
     }catch(err){res.json({message : err})}
         
