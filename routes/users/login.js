@@ -37,7 +37,7 @@ router.post('/login', async (req,res) => {
         }
         console.log(intercourser.pwd)
         console.log(req.body.pwd)
-        if(intercourser.pwd != req.body.pwd){
+        if(intercourser.pwd !== req.body.pwd){
             return res.json({status : "check regNo/password"})
             
         }
