@@ -22,7 +22,7 @@ app.use("/students/finalyr",finalyrroute)
 
 
 app.get('/',(req,res)=> {
-    res.send("hi")
+    res.send("working")
 })
 
 url ="mongodb+srv://admin:admin@api-shop.edmom.mongodb.net/antenna?retryWrites=true&w=majority"
