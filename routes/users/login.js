@@ -37,19 +37,21 @@ router.post('/login', async (req,res) => {
         }
         console.log(intercourser.pwd)
         console.log(req.body.pwd)
-        if(intercourser.pwd != req.body.pwd){
-            return res.json({status : "check regNo/password"})
+        if(intercourser.pwd === req.body.pwd){
+            const response = {
+                studentName : intercourser.studentName,
+                regNo : intercourser.regNo,
+                status : "login succe5fu!!"
+            }
+            console.log(response.status)
+            const token = jwt.sign({_id : intercourser._id}, SECRET_TOKEN_STUD)
+            res.header("auth-token", token).json({token : token,response})
+            console.log(token)  
             
         }
-        const response = {
-            studentName : intercourser.studentName,
-            regNo : intercourser.regNo,
-            status : "login succe5fu!!"
+        else{
+        return res.json({status : "check regNo/password"})
         }
-        console.log(response.status)
-        const token = jwt.sign({_id : intercourser._id}, SECRET_TOKEN_STUD)
-        res.header("auth-token", token).json({token : token,response})
-        console.log(token)
     }catch(err){res.json({message : err})}
         
 })
